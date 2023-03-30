@@ -7,6 +7,7 @@ const StudentList = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
+    console.log("students...", students);
 
     //!========================================
     fetch('http://localhost:4000/graphql', {
@@ -25,8 +26,8 @@ const StudentList = () => {
     })
       .then(res => res.json())
       .then(res => {
-        setStudents(res.data)
-        // console.log('res.data',res.data)
+        setStudents(res.data.fetchAll)
+        console.log('res.data',res.data)
       });
     //!========================================
     // axios
@@ -42,7 +43,9 @@ const StudentList = () => {
 
   
     const DataTable = () => {
-      if(students.length>0){
+      console.log("students.map", typeof students);
+      if(students.length > 0) {
+        console.log("students.map", students.length);
       return students.map((res, i) => {
         console.log("students.map",res);
         return <StudentTableRow obj={res} key={i} />;

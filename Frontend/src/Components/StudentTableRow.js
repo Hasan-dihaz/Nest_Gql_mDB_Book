@@ -4,21 +4,50 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
   
 const StudentTableRow = (props) => {
-  console.log("props", props);
   const { _id, name, author, publishYear } = props.obj;
-  console.log("props.obj", props.obj);
   
   const deleteStudent = () => {
-    axios
-      .delete(
-"http://localhost:4000/students/delete-student/" + _id)
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Student successfully deleted");
-          window.location.reload();
-        } else Promise.reject();
+    //!=======================
+      const query = `
+        mutation DeleteBook($bookid: ID!) {
+          delete(bookid: $bookid) {
+            publishYear
+            name
+            author
+          }
+        }
+      `;
+    
+      const variables = {
+        bookid: _id,
+      };
+    
+      fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: query,
+          variables: variables,
+        }),
       })
-      .catch((err) => alert("Something went wrong"));
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
+
+    
+    //!=======================
+//     axios
+//       .delete(
+// "http://localhost:4000/graphql" )
+//       .then((res) => {
+//         if (res.status === 200) {
+//           alert("Student successfully deleted");
+//           window.location.reload();
+//         } else Promise.reject();
+//       })
+//       .catch((err) => alert("Something went wrong"));
   };
   
   return (

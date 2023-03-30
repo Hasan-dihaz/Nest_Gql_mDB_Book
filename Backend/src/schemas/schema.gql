@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type Book {
+  _id: ID!
   name: String!
   author: String!
   publishYear: String
@@ -26,7 +27,7 @@ input CreateBookInput {
 }
 
 input Bookid {
-  id: String!
+  _id: String!
 }
 
 input UpdateBookInput {

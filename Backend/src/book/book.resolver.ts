@@ -19,7 +19,7 @@ export class BookController {
 
   @Mutation((returns) => Book)
   async findById(@Args('bookid') bookid: Bookid) {
-    return await this.bookService.readById(bookid.id);
+    return await this.bookService.readById(bookid._id);
   }
 
   @Mutation((returns) => Book)
@@ -29,6 +29,6 @@ export class BookController {
 
   @Mutation((returns) => Book)
   async delete(@Args('bookid') bookid: Bookid) {
-    return await this.bookService.delete(bookid.id);
+    return await this.bookService.delete(bookid._id);
   }
 }

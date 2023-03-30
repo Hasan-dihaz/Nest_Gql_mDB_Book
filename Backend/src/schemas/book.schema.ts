@@ -1,14 +1,15 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import mongoose from 'mongoose';
 
 export type BookDocument = Book & Document;
 @ObjectType()
 @Schema()
 export class Book {
-  @Field(() => String)
-  @Prop({ type: String })
-  _id: string;
+  @Field(() => ID)
+  @Prop({ type: mongoose.Schema.Types.ObjectId, auto: true })
+  _id: mongoose.Types.ObjectId;
 
   @Field(() => String)
   @Prop({ type: String })
