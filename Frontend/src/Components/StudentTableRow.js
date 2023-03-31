@@ -42,7 +42,7 @@ const StudentTableRow = (props) => {
         .then(data => console.log(data))
         .catch(err => console.error(err));
 
-    
+         window.location.reload(true)
     //!=======================
 //     axios
 //       .delete(

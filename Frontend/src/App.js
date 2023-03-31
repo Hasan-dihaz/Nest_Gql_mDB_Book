@@ -29,7 +29,7 @@ const App = () => {
               <Navbar.Brand>
                 <Link to={"/create-student"} 
                   className="nav-link">
-                  React MERN Stack App
+                  React App
                 </Link>
               </Navbar.Brand>
   
