@@ -27,7 +27,7 @@ input CreateBookInput {
 }
 
 input Bookid {
-  _id: String!
+  _id: ID!
 }
 
 input UpdateBookInput {

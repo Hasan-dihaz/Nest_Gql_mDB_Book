@@ -9,20 +9,26 @@ const StudentTableRow = (props) => {
   const deleteStudent = () => {
     //!=======================
       const query = `
-        mutation DeleteBook($bookid: ID!) {
-          delete(bookid: $bookid) {
-            publishYear
-            name
-            author
-          }
+      mutation Delete($bookid: Bookid!) {
+        delete(bookid: $bookid) {
+          _id
+          name
+          author
+          publishYear
         }
+      }
       `;
     
       const variables = {
-        bookid: _id,
+        "bookid": {
+          "_id": _id
+        }
       };
+      // const variables = {
+      //   "_id": _id,
+      // };
     
-      fetch('/graphql', {
+      fetch('http://localhost:4000/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

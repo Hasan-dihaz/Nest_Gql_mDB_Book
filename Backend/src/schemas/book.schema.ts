@@ -7,9 +7,9 @@ export type BookDocument = Book & Document;
 @ObjectType()
 @Schema()
 export class Book {
-  @Field(() => ID)
-  @Prop({ type: mongoose.Schema.Types.ObjectId, auto: true })
-  _id: mongoose.Types.ObjectId;
+  // @Field(() => ID)
+  // @Prop({ type: mongoose.Schema.Types.ObjectId, auto: true })
+  // _id: mongoose.Types.ObjectId;
 
   @Field(() => String)
   @Prop({ type: String })

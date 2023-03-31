@@ -20,11 +20,14 @@ const StudentForm = (props) => {
     // const onsubmit=()=>{
     //   props.addContact(formValues);
     // }
-
 const onsbmit=()=>{
   console.log("Form_1");
      console.log(formValues);
-  props.addContact(formValues);
+     if(props.children==='Create Book'){
+       props.addContact(formValues);
+     }else{
+       props.updatedValue(formValues);
+     }
   // setFormValues({ book: '', author: '', year: '' });
   props.onSubmit();
 }

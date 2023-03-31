@@ -22,9 +22,9 @@ export class Bookid {
   // @Prop({ type: String })
   // _id?: string;
 
-  @Field(() => ID)
-  @Prop({ type: mongoose.Schema.Types.ObjectId, auto: true })
-  _id: mongoose.Types.ObjectId;
+  @Field(() => String)
+  // @Prop({ type: mongoose.Schema.Types.ObjectId, auto: true })
+  _id: string;
 }
 
 @InputType()
