@@ -7,13 +7,15 @@ import { BookController } from './book/book.resolver';
 import { BookService } from './book/book.service';
 import { Book, BookSchema } from './schemas/book.schema';
 
+// import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/book_nest'),
     MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: false,
+      // playground: true,
       // plugins: [ApolloServerPluginLandingPageLocalDefault()],
       autoSchemaFile: join(process.cwd(), 'src/schemas/schema.gql'),
     }),
