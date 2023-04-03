@@ -2,22 +2,22 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Prop } from '@nestjs/mongoose';
 // import mongoose from 'mongoose';
 @InputType()
-export class CreateBookInput {
+export class CreateAuthorInput {
   @Field(() => String)
   @Prop({ type: String })
-  name: string;
+  nam: string;
 
   @Field(() => String)
   @Prop({ type: Number })
-  author: string;
+  email: string;
 
   @Field(() => String, { nullable: true })
   @Prop({ type: Number })
-  publishYear?: number;
+  phone?: number;
 }
 
 @InputType()
-export class Bookid {
+export class Authorid {
   // @Field(() => String, { nullable: false })
   // @Prop({ type: String })
   // _id?: string;
@@ -28,7 +28,7 @@ export class Bookid {
 }
 
 @InputType()
-export class UpdateBookInput {
+export class UpdateAuthorInput {
   @Field(() => String, { nullable: false })
   @Prop({ type: String })
   id?: string;
@@ -39,11 +39,11 @@ export class UpdateBookInput {
 
   @Field(() => String, { nullable: true })
   @Prop({ type: String })
-  author: string;
+  email: string;
 
   @Field(() => String, { nullable: true })
   @Prop({ type: Number })
-  publishYear?: number;
+  phone?: number;
 
   // @Field(() => String, { nullable: true })
   // @Prop({ type: Number })
