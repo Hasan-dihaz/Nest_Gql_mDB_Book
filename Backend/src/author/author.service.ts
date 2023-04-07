@@ -1,32 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
-import { Auth, AuthorDocument } from 'src/author/entities/author.schema';
+import { Author, AuthorDocument } from 'src/author/entities/author.model';
+
+import { Authorid, CreateAuthorInput, UpdateAuthorInput } from './author.input';
 
 @Injectable()
 export class AuthorService {
   constructor(
-    @InjectModel('Auth') private authorModel: Model<AuthorDocument>,
+    @InjectModel('Author') private authorModel: Model<AuthorDocument>,
   ) {}
-  async create(book): Promise<Auth> {
-    const newBook = new this.authorModel(book);
+
+  async create(author: CreateAuthorInput): Promise<Author> {
+    const newBook = new this.authorModel(author);
     return await newBook.save();
   }
 
-  async readAll(): Promise<Auth[]> {
+  async readAll(): Promise<Author[]> {
     return await this.authorModel.find().exec();
   }
 
-  async readById(id): Promise<Auth> {
-    return await this.authorModel.findById(id).exec();
+  // async readById(id): Promise<Author> {
+  //   return await this.authorModel.findById(id).exec();
+  // }
+
+  async update(updateAuthor: UpdateAuthorInput): Promise<Author> {
+    const id = new mongoose.Types.ObjectId(updateAuthor.id);
+    return await this.authorModel.findByIdAndUpdate(id, updateAuthor, {
+      new: true,
+    });
   }
 
-  async update(book): Promise<Auth> {
-    const id = new mongoose.Types.ObjectId(book.id);
-    return await this.authorModel.findByIdAndUpdate(id, book, { new: true });
-  }
-
-  async delete(id): Promise<any> {
-    return await this.authorModel.findByIdAndRemove(id);
+  async delete(authorid: string): Promise<any> {
+    return await this.authorModel.findByIdAndRemove(authorid);
   }
 }

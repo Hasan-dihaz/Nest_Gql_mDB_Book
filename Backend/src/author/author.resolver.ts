@@ -1,5 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Auth } from 'src/author/entities/author.schema';
+import { Author } from 'src/author/entities/author.model';
 import { Authorid, CreateAuthorInput, UpdateAuthorInput } from './author.input';
 import { AuthorService } from './author.service';
 
@@ -7,28 +7,28 @@ import { AuthorService } from './author.service';
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
-  @Query((returns) => [Auth])
-  async fetchAll(): Promise<any> {
+  @Query(() => [Author])
+  async fetchAllAurhor(): Promise<any> {
     return await this.authorService.readAll();
   }
 
-  @Mutation((returns) => Auth)
-  async createBook(@Args('input') input: CreateAuthorInput) {
+  @Mutation(() => Author)
+  async createAuthor(@Args('input') input: CreateAuthorInput) {
     return await this.authorService.create(input);
   }
 
-  @Mutation((returns) => Auth)
-  async findById(@Args('bookid') bookid: Authorid) {
-    return await this.authorService.readById(bookid._id);
+  // @Query((returns) => Author)
+  // async findAuthorById(@Args('authorid') authorid: Authorid) {
+  //   return await this.authorService.readById(authorid._id);
+  // }
+
+  @Mutation(() => Author)
+  async updateAuthor(@Args('updateAuthor') updateAuthor: UpdateAuthorInput) {
+    return await this.authorService.update(updateAuthor);
   }
 
-  @Mutation((returns) => Auth)
-  async update(@Args('updateBook') updateBook: UpdateAuthorInput) {
-    return await this.authorService.update(updateBook);
-  }
-
-  @Mutation((returns) => Auth)
-  async delete(@Args('bookid') bookid: Authorid) {
-    return await this.authorService.delete(bookid._id);
+  @Mutation(() => Author)
+  async deleteAuthor(@Args('authorid') authorid: Authorid) {
+    return await this.authorService.delete(authorid._id);
   }
 }

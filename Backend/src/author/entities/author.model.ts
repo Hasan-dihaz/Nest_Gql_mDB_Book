@@ -2,13 +2,13 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type AuthorDocument = Auth & Document;
+export type AuthorDocument = Author & Document;
 @ObjectType()
 @Schema()
-export class Auth {
+export class Author {
   @Field(() => String)
   @Prop({ type: String })
-  nam: string;
+  name: string;
 
   @Field(() => String)
   @Prop({ type: String })
@@ -23,4 +23,4 @@ export class Auth {
   // Category?: string;
 }
 
-export const AuthorSchema = SchemaFactory.createForClass(Auth);
+export const AuthorSchema = SchemaFactory.createForClass(Author);

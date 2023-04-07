@@ -1,0 +1,78 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Publisher {
+  publisher: String!
+  address: String!
+  contact: String
+}
+
+type Book {
+  name: String!
+  authorId: String!
+  publisher: Publisher!
+  publishedYear: String
+}
+
+type Author {
+  name: String!
+  email: String!
+  phone: String
+}
+
+type Query {
+  fetchAllBook: [Book!]!
+  fetchAllAurhor: [Author!]!
+}
+
+type Mutation {
+  createBook(input: CreateBookInput!): Book!
+  findBookById(bookid: Bookid!): Book!
+  updateBook(updateBook: UpdateBookInput!): Book!
+  deleteBook(bookid: Bookid!): Book!
+  createAuthor(input: CreateAuthorInput!): Author!
+  updateAuthor(updateAuthor: UpdateAuthorInput!): Author!
+  deleteAuthor(authorid: Authorid!): Author!
+}
+
+input CreateBookInput {
+  name: String!
+  authorId: String!
+  publisher: CreatePublisherInput!
+  publishedYear: String
+}
+
+input CreatePublisherInput {
+  publisher: String!
+  address: String!
+  contact: String
+}
+
+input Bookid {
+  _id: String!
+}
+
+input UpdateBookInput {
+  id: String!
+  name: String!
+  authorId: String
+  publishedYear: String
+}
+
+input CreateAuthorInput {
+  name: String!
+  email: String!
+  phone: String
+}
+
+input UpdateAuthorInput {
+  id: String!
+  name: String!
+  email: String
+  phone: String
+}
+
+input Authorid {
+  _id: String!
+}

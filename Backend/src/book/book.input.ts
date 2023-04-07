@@ -1,51 +1,48 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Prop } from '@nestjs/mongoose';
+// import { Publisher } from 'src/publisher/entities/publisher.model';
+import { CreatePublisherInput } from 'src/publisher/publisher.input';
+// import { Prop } from '@nestjs/mongoose';
 // import mongoose from 'mongoose';
 @InputType()
 export class CreateBookInput {
   @Field(() => String)
-  @Prop({ type: String })
   name: string;
 
   @Field(() => String)
-  @Prop({ type: Number })
-  author: string;
+  authorId: string;
+
+  @Field(() => CreatePublisherInput)
+  publisher: CreatePublisherInput;
 
   @Field(() => String, { nullable: true })
-  @Prop({ type: Number })
-  publishYear?: number;
+  publishedYear?: number;
 }
 
 @InputType()
 export class Bookid {
   // @Field(() => String, { nullable: false })
-  // @Prop({ type: String })
+
   // _id?: string;
 
   @Field(() => String)
-  // @Prop({ type: mongoose.Schema.Types.ObjectId, auto: true })
   _id: string;
 }
 
 @InputType()
 export class UpdateBookInput {
   @Field(() => String, { nullable: false })
-  @Prop({ type: String })
   id?: string;
 
   @Field(() => String)
-  @Prop({ type: String })
   name: string;
 
   @Field(() => String, { nullable: true })
-  @Prop({ type: String })
-  author: string;
+  authorId: string;
 
   @Field(() => String, { nullable: true })
-  @Prop({ type: Number })
-  publishYear?: number;
+  publishedYear?: number;
 
   // @Field(() => String, { nullable: true })
-  // @Prop({ type: Number })
+
   // Category?: number;
 }
