@@ -6,7 +6,7 @@ import { Book, BookDocument } from 'src/book/entities/book.model';
 @Injectable()
 export class BookService {
   constructor(@InjectModel('Book') private bookModel: Model<BookDocument>) {}
-  async create(book): Promise<Book> {
+  async create(book: Book): Promise<Book> {
     const newBook = new this.bookModel(book);
     return await newBook.save();
   }

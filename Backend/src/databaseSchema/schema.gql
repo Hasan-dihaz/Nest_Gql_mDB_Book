@@ -13,6 +13,7 @@ type Book {
   authorId: String!
   publisher: Publisher!
   publishedYear: String
+  image: String
 }
 
 type Author {
@@ -27,6 +28,7 @@ type Query {
 }
 
 type Mutation {
+  createBookInput(createBookInput: CreateBookInput!): Boolean!
   createBook(input: CreateBookInput!): Book!
   findBookById(bookid: Bookid!): Book!
   updateBook(updateBook: UpdateBookInput!): Book!
@@ -41,6 +43,7 @@ input CreateBookInput {
   authorId: String!
   publisher: CreatePublisherInput!
   publishedYear: String
+  image: Upload
 }
 
 input CreatePublisherInput {
@@ -48,6 +51,9 @@ input CreatePublisherInput {
   address: String!
   contact: String
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 input Bookid {
   _id: String!

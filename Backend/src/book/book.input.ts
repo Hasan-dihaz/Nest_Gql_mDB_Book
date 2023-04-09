@@ -3,6 +3,8 @@ import { Field, InputType } from '@nestjs/graphql';
 import { CreatePublisherInput } from 'src/publisher/publisher.input';
 // import { Prop } from '@nestjs/mongoose';
 // import mongoose from 'mongoose';
+
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 @InputType()
 export class CreateBookInput {
   @Field(() => String)
@@ -16,6 +18,9 @@ export class CreateBookInput {
 
   @Field(() => String, { nullable: true })
   publishedYear?: number;
+
+  @Field(() => GraphQLUpload, { nullable: true })
+  image?: FileUpload;
 }
 
 @InputType()

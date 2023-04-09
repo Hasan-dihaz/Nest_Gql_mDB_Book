@@ -23,6 +23,10 @@ export class Book {
   @Prop({ type: Number })
   publishedYear?: number;
 
+  @Field(() => String, { nullable: true })
+  @Prop({ type: String })
+  image?: string;
+
   // @Field(() => String, { nullable: true })
   // @Prop({ type: String })
   // Category?: string;
