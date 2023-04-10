@@ -10,8 +10,8 @@ export class CreateBookInput {
   @Field(() => String)
   name: string;
 
-  @Field(() => String)
-  authorId: string;
+  // @Field(() => String)
+  // authorId: string;
 
   @Field(() => CreatePublisherInput)
   publisher: CreatePublisherInput;
