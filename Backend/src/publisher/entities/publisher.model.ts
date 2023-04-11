@@ -2,15 +2,15 @@ import { Field, ObjectType } from '@nestjs/graphql';
 // import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 // import { Document } from 'mongoose';
 
-// export type PublisherDocument = Publisher & Document;
+export type PublisherDocument = Publisher & Document;
 @ObjectType()
 // @Schema()
 export class Publisher {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   // @Prop({ type: String })
   publisher: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   // @Prop({ type: String })
   address: string;
 

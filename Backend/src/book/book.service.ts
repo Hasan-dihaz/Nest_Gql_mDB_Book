@@ -8,13 +8,12 @@ export class BookService {
   constructor(@InjectModel('Book') private bookModel: Model<BookDocument>) {}
   async create(book: Book): Promise<Book> {
     console.log('book', book);
-
     const newBook = new this.bookModel(book);
     return await newBook.save();
   }
 
   async readAll(): Promise<Book[]> {
-    return await this.bookModel.find().exec();
+    return await this.bookModel.find().populate('authorId').exec();
   }
 
   async readById(id): Promise<Book> {

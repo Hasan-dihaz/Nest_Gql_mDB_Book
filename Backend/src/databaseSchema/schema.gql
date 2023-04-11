@@ -2,24 +2,23 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Author {
+  name: String!
+  email: String
+  phone: String
+}
+
 type Publisher {
-  publisher: String!
-  address: String!
+  publisher: String
+  address: String
   contact: String
 }
 
 type Book {
   name: String!
-  authorId: String!
-  publisher: Publisher!
-  publishedYear: String
+  author: Author!
+  publisher: Publisher
   image: String
-}
-
-type Author {
-  name: String!
-  email: String!
-  phone: String
 }
 
 type Query {
@@ -39,7 +38,7 @@ type Mutation {
 
 input CreateBookInput {
   name: String!
-  authorId: String!
+  author: String!
   publisher: CreatePublisherInput!
   publishedYear: String
   image: Upload

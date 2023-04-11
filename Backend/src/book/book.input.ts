@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-// import { Publisher } from 'src/publisher/entities/publisher.model';
 import { CreatePublisherInput } from 'src/publisher/publisher.input';
 // import { Prop } from '@nestjs/mongoose';
 // import mongoose from 'mongoose';
+import { Types } from 'mongoose';
 
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 @InputType()
@@ -10,11 +10,13 @@ export class CreateBookInput {
   @Field(() => String)
   name: string;
 
-  // @Field(() => String)
-  // authorId: string;
+  @Field(() => String)
+  author: Types.ObjectId;
 
   @Field(() => CreatePublisherInput)
-  publisher: CreatePublisherInput;
+  publisher: string;
+  // @Field(() => String)
+  // publisher: string;
 
   @Field(() => String, { nullable: true })
   publishedYear?: number;

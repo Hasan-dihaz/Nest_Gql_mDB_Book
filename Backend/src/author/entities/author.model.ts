@@ -10,7 +10,7 @@ export class Author {
   @Prop({ type: String })
   name: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   @Prop({ type: String })
   email: string;
 
