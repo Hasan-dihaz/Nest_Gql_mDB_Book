@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { AuthorDocument, Author } from 'src/author/entities/author.model';
+import { Author } from 'src/author/entities/author.model';
 import { Publisher } from 'src/publisher/entities/publisher.model';
 // import Schem from 'mongoose';
 
@@ -13,7 +13,7 @@ export class Book {
   @Prop({ type: String })
   name: string;
 
-  @Field(() => Author)
+  @Field(() => Author, { nullable: true })
   @Prop({ type: Types.ObjectId, ref: 'Author', required: true })
   author: Types.ObjectId;
 
@@ -28,10 +28,6 @@ export class Book {
   @Field(() => String, { nullable: true })
   @Prop({ type: String })
   image?: string;
-
-  // @Field(() => String, { nullable: true })
-  // @Prop({ type: String })
-  // Category?: string;
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);

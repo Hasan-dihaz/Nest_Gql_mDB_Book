@@ -13,7 +13,7 @@ export class BookService {
   }
 
   async readAll(): Promise<Book[]> {
-    return await this.bookModel.find().populate('authorId').exec();
+    return await this.bookModel.find().populate('author').exec();
   }
 
   async readById(id): Promise<Book> {

@@ -15,10 +15,6 @@ export class CreateAuthorInput {
 
 @InputType()
 export class Authorid {
-  // @Field(() => String, { nullable: false })
-
-  // _id?: string;
-
   @Field(() => String)
   _id: string;
 }
@@ -36,8 +32,4 @@ export class UpdateAuthorInput {
 
   @Field(() => String, { nullable: true })
   phone?: number;
-
-  // @Field(() => String, { nullable: true })
-
-  // Category?: number;
 }

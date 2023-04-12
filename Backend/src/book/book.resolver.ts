@@ -16,6 +16,12 @@ export class BookController {
   async fetchAllBook(): Promise<any> {
     return await this.bookService.readAll();
   }
+
+  @Query(() => Book)
+  async findBookById(@Args('bookid') bookid: Bookid) {
+    return await this.bookService.readById(bookid._id);
+  }
+
   //!==============================================
   @Mutation(() => Book)
   async createBookInput(
@@ -33,7 +39,6 @@ export class BookController {
     const newFilename = `${Date.now()}-${filename}`;
     const savePath = join(__dirname, '..', '..', 'uploads', newFilename);
     // const Path = join(__dirname, '..', '..', 'uploads', newFilename);
-    console.log('path..........', savePath);
     const writeStream = createWriteStream(savePath);
     await ReadStream.pipe(writeStream);
     console.log('+================', savePath);
@@ -51,11 +56,6 @@ export class BookController {
   // }
 
   @Mutation(() => Book)
-  async findBookById(@Args('bookid') bookid: Bookid) {
-    return await this.bookService.readById(bookid._id);
-  }
-
-  @Mutation(() => Book)
   async updateBook(@Args('updateBook') updateBook: UpdateBookInput) {
     return await this.bookService.update(updateBook);
   }
@@ -63,7 +63,6 @@ export class BookController {
   @Mutation(() => Book)
   async deleteBook(@Args('bookid') bookid: Bookid) {
     //!===============================================
-
     const book = await this.bookService.readById(bookid._id);
     console.log('book......', book.image);
     // using the unlink method to delete file from uploads directory

@@ -6,7 +6,7 @@ export type AuthorDocument = Author & Document;
 @ObjectType()
 @Schema()
 export class Author {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   @Prop({ type: String })
   name: string;
 
